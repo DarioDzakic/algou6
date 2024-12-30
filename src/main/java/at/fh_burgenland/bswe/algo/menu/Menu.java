@@ -1,6 +1,7 @@
 package at.fh_burgenland.bswe.algo.menu;
 
 import at.fh_burgenland.bswe.algo.sort.heapsort.Heapsort;
+import at.fh_burgenland.bswe.algo.sort.mergesort.Mergesort;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
 
-    public void openMenu(){
+    public void openMenu() {
         long startTime, endTime;
         int algorithm;
         int inputType;
@@ -24,7 +25,7 @@ public class Menu {
 
         System.out.println("Hello and welcome to the Merge and Heap sort Menu \n" +
                 "Choose with the numbers the menu item you want");
-        while(exit){
+        while (exit) {
             System.out.println("Choose now the algorithm you want to use:");
             System.out.println("1. Mergesort");
             System.out.println("2. Heapsort");
@@ -36,9 +37,9 @@ public class Menu {
             System.out.println("2. per txt file; format: one number per line");
             System.out.println("3. per txt file; format: delimited by ';' ");
 
-            inputType=scanner.nextInt();
+            inputType = scanner.nextInt();
             scanner.nextLine();
-            switch (inputType){
+            switch (inputType) {
                 case 1:
                     list = inputData();
                     break;
@@ -49,9 +50,13 @@ public class Menu {
                     list = importData(";");
                     break;
             }
-            switch (algorithm){
+            switch (algorithm) {
                 case 1:
-                    //merge;
+                    log.warn("Mergesort");
+                    startTime = System.nanoTime();
+                    list = Mergesort.mergeSort(list);
+                    endTime = System.nanoTime();
+                    log.warn("Execution time: {} ms", (endTime - startTime) / 1_000_000.0);
                     break;
                 case 2:
                     log.warn("BinaryRecursive");
@@ -65,8 +70,8 @@ public class Menu {
             System.out.println("\n If you want to leave press 1, if you want to resume" +
                     "just enter any other number");
 
-            if(scanner.nextInt()==1){
-                exit= false;
+            if (scanner.nextInt() == 1) {
+                exit = false;
             }
             scanner.nextLine();
         }
@@ -77,19 +82,20 @@ public class Menu {
         System.out.print(list.toString());
     }
 
-    public List<Integer> inputData(){
+    public List<Integer> inputData() {
         System.out.println("Please type in your numbers now (1, 5, 4, 2): ");
         String input = scanner.nextLine();
         return Arrays
-            .stream(input.split(", "))
-            .map(Integer::parseInt)
+                .stream(input.split(", "))
+                .map(String::trim)
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> importData(String delimiter){
+    public List<Integer> importData(String delimiter) {
         ArrayList<Integer> list = new ArrayList<>();
         System.out.println("type in the absolut path to your file");
-        String path=scanner.nextLine();
+        String path = scanner.nextLine();
         try {
             Scanner scanner = new Scanner(new File(path));
             scanner.useDelimiter(delimiter);
