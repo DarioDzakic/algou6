@@ -19,6 +19,7 @@ public class Heapsort {
 
         for (int i = n / 2 - 1; i >= 0; i--) {
             heapify(list, n, i);
+            iterations++;
         }
 
         for (int i = n - 1; i > 0; i--) {
@@ -52,7 +53,7 @@ public class Heapsort {
             int swap = list.get(i);
             list.set(i, list.get(largest));
             list.set(largest, swap);
-
+            //iterations++;
             heapify(list, n, largest);
         }
     }
