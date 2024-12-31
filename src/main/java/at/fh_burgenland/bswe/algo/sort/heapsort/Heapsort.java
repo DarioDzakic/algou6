@@ -2,21 +2,18 @@ package at.fh_burgenland.bswe.algo.sort.heapsort;
 
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-
 import java.util.List;
 
 @Log4j2
 public class Heapsort {
 
+
     @Getter
-    private static int comparisons;
-    @Getter
-    private static int swaps;
+    private static int iterations;
 
     public static List<Integer> heapSort(List<Integer> list) {
 
-        comparisons = 0;
-        swaps = 0;
+        iterations = 0;
 
         int n = list.size();
 
@@ -25,7 +22,13 @@ public class Heapsort {
         }
 
         for (int i = n - 1; i > 0; i--) {
-            swap(list, 0, i);
+
+            int temp = list.get(0);
+            list.set(0, list.get(i));
+            list.set(i, temp);
+
+            iterations++;
+
             heapify(list, i, 0);
         }
         return list;
@@ -36,31 +39,21 @@ public class Heapsort {
         int left = 2 * i + 1;
         int right = 2 * i + 2;
 
-        if (left < n) {
-            comparisons++;
-            if (list.get(left) > list.get(largest)) {
-                largest = left;
-            }
+
+        if (left < n && list.get(left) > list.get(largest)) {
+            largest = left;
         }
 
-        if (right < n) {
-            comparisons++;
-            if (list.get(right) > list.get(largest)) {
-                largest = right;
-            }
+        if (right < n && list.get(right) > list.get(largest)) {
+            largest = right;
         }
 
         if (largest != i) {
-            swap(list, i, largest);
+            int swap = list.get(i);
+            list.set(i, list.get(largest));
+            list.set(largest, swap);
 
             heapify(list, n, largest);
         }
     }
-    private static void swap(List<Integer> list, int i, int j) {
-        swaps++;
-        int temp = list.get(i);
-        list.set(i, list.get(j));
-        list.set(j, temp);
-    }
-
 }

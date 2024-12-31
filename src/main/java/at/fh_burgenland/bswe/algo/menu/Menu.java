@@ -54,11 +54,9 @@ public class Menu {
                     long endTime = System.nanoTime();
                     double durationMs = (endTime - startTime) / 1_000_000.0;
 
-
                     System.out.println("Sorted result: " + sorted);
                     log.info("Mergesort completed in {} ms", durationMs);
-                    log.info("Mergesort: total comparisons = {}", Mergesort.getComparisons());
-                    log.info("Mergesort: total merges      = {}", Mergesort.getMerges());
+                    log.info("Mergesort: total iterations (Sortierdurchläufe) = {}", Mergesort.getIterations());
                 }
                 case 2 -> {
                     log.info("\n==> Heapsort <==");
@@ -69,22 +67,22 @@ public class Menu {
 
                     System.out.println("Sorted result: " + list);
                     log.info("Heapsort completed in {} ms", durationMs);
-                    log.info("Heapsort: total comparisons = {}", Heapsort.getComparisons());
-                    log.info("Heapsort: total swaps       = {}", Heapsort.getSwaps());
+                    log.info("Heapsort: total iterations  = {}", Heapsort.getIterations());
                 }
             }
         }
     }
 
+
     private List<Integer> inputData() {
         System.out.println("Please type in your numbers now (for example: 1, 5, 4, 2): ");
         String input = scanner.nextLine();
-
         return Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
 
     private List<Integer> importData(String delimiter) {
         ArrayList<Integer> list = new ArrayList<>();
