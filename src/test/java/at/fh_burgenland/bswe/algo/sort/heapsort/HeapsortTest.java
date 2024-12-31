@@ -15,7 +15,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(3, 4, 8, 9, 10));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -25,7 +24,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 7, 8, 9, 10, 24, 33));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -35,7 +33,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 8, 9, 10, 12, 41, 91, 100, 201, 211));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -45,7 +42,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(-10, -5, -3, -2, -1));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -55,7 +51,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(-10, -1, 0, 3, 5));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -65,7 +60,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 2, 3, 4, 4));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -75,7 +69,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(42));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -85,7 +78,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>();
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 
@@ -95,7 +87,6 @@ public class HeapsortTest {
         List<Integer> expected = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
         Heapsort.heapSort(input);
-
         assertEquals(expected, input);
     }
 }
